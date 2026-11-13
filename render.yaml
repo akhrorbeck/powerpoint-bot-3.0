@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: ppt-telegram-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    healthCheckPath: /
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.8-flash
+      - key: REQUIRED_CHANNELS
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: DAILY_LIMIT
+        value: "3"
+      - key: KEEPALIVE
+        value: "1"
+      - key: MAX_PARALLEL
+        value: "2"
